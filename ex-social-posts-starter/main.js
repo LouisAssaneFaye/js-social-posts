@@ -80,10 +80,10 @@ for (let i = 0 ; i < posts.length ; i = i + 1){
        <div class="post__footer">
            <div class="likes js-likes">
                <div class="likes__cta">
-                   <a class="like-button  js-like-button" href="#" data-postid="1">
+                   <div class="like-button  js-like-button" href="#" data-postid="1">
                        <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                        <span class="like-button__label">Mi Piace</span>
-                   </a>
+                   </div>
                </div>
                <div class="likes__counter">
                    Piace a <b id="like-counter-1" class="js-likes-counter">${postElement.likes}</b> persone
@@ -91,6 +91,77 @@ for (let i = 0 ; i < posts.length ; i = i + 1){
            </div> 
        </div>            
    </div> `
-   
 }
 
+ const likeButton = document.querySelectorAll('span.like-button__label');
+ const numberOfLikes = document.getElementById('like-counter-1');
+ for (let i = 0 ; i < likeButton.length ; i++){
+    likeButton[i].addEventListener('click' , function(){
+        console.log(likeButton[i]);
+        likeButton[i].classList.toggle('like-button--liked');
+        const postElement = posts[i];
+        const likes = postElement.likes;
+        console.log(likes);
+        const totaLikes = likes + 1 ;
+        console.log(totaLikes);
+    })
+ }
+ 
+
+ for (let i = 0 ; i < numberOfLikes.length ; i++){
+    likeButton[i].addEventListener('click' , function(){
+        const postElement = posts[i];
+        const likes = postElement.likes;
+        const totaLikes = likes + 1 ;
+        console.log(totaLikes);
+        numberOfLikes.appendChild(totaLikes)
+    })
+
+ }
+ 
+
+/* 
+const likeButton = document.getElementsByClassName('likes__cta');
+likeButton.addEventListener('click', function(){
+    likeButton.classList.add('like-button--liked');
+    postElement.like = postElement.like + 1 ;
+    for (let i = 0 ; i < posts.length ; i = i + 1){
+        const postElement = posts[i];
+        postContainer.innerHTML = '';
+        postContainer.innerHTML = 
+    
+      ` <div class="post">
+           <div class="post__header">
+               <div class="post-meta">                    
+                   <div class="post-meta__icon">
+                       <img class="profile-pic" src="${postElement.author.image}" alt="${postElement.author.name}">                    
+                   </div>
+                   <div class="post-meta__data">
+                       <div class="post-meta__author">${postElement.author.name}</div>
+                       <div class="post-meta__time">${postElement.created}</div>
+                   </div>                    
+               </div>
+           </div>
+           <div class="post__text">Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.</div>
+           <div class="post__image">
+               <img src="${postElement.media}" alt="">
+           </div>
+           <div class="post__footer">
+               <div class="likes js-likes">
+                   <div class="likes__cta">
+                       <a class="like-button  js-like-button" href="#" data-postid="1">
+                           <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                           <span class="like-button__label">Mi Piace</span>
+                       </a>
+                   </div>
+                   <div class="likes__counter">
+                       Piace a <b id="like-counter-1" class="js-likes-counter">${postElement.likes}</b> persone
+                   </div>
+               </div> 
+           </div>            
+       </div> `
+    }
+     
+});
+
+*/
